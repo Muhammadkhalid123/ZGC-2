@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm';
+import { Phone, Mail, MapPin, Clock, CalendarDays } from 'lucide-react';
+---
+
+<BaseLayout 
+  title="Contact Us | Zain Group of Companies" 
+  description="Contact Zain Group of Companies (ZGC). Get in touch with our Karachi office for apartment bookings, payment plans, properties for sale, or visit us in Malir."
+>
+  {/* Header */}
+  <section class="bg-linen py-16 md:py-24 border-b border-charcoal/5">
+    <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+      <span class="text-[10px] font-sans font-bold tracking-widest uppercase text-charcoal/40 block">Office Location</span>
+      <h1 class="text-4xl md:text-6xl font-light font-display text-charcoal max-w-3xl mx-auto leading-tight">
+        Connect With Our Team
+      </h1>
+      <p class="text-sm md:text-base text-charcoal/60 max-w-xl mx-auto font-light leading-relaxed">
+        Have questions about residential bookings or commercial retail shops? Get in touch with our experts or schedule a visit to our corporate office.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
+    {/* Office info column */}
+    <div class="space-y-12">
+      <div class="space-y-6">
+        <h2 class="text-3xl font-light font-display text-charcoal">Headquarters details</h2>
+        <p class="text-sm text-charcoal/70 leading-relaxed font-light">
+          Zain Group of Companies is conveniently located near the Jinnah International Terminal road, making it accessible from both Shahrah-e-Faisal and Malir. Our representative desk is open throughout the week to assist your queries.
+        </p>
+      </div>
+
+      {/* Info items list */}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm font-light text-charcoal">
+        <div class="space-y-2 border-l border-charcoal/10 pl-4">
+          <MapPin className="w-5 h-5 text-charcoal/25 mb-1" />
+          <h4 class="font-semibold uppercase text-xs tracking-wider">Office Address</h4>
+          <p class="text-charcoal/70 leading-relaxed text-xs">
+            Survey No. 535/1, Off Jinnah International Terminal Road towards Shahrah-e-Faisal, Airport Town, Deh Mehran, Karachi, Pakistan.
+          </p>
+        </div>
+
+        <div class="space-y-2 border-l border-charcoal/10 pl-4">
+          <Phone className="w-5 h-5 text-charcoal/25 mb-1" />
+          <h4 class="font-semibold uppercase text-xs tracking-wider">Direct Hotline</h4>
+          <p class="text-charcoal/70 text-xs">0330 2382380</p>
+          <p class="text-charcoal/40 text-[10px]">Mobile: 0330 9429421-3</p>
+        </div>
+
+        <div class="space-y-2 border-l border-charcoal/10 pl-4">
+          <Mail className="w-5 h-5 text-charcoal/25 mb-1" />
+          <h4 class="font-semibold uppercase text-xs tracking-wider">Email Inquiry</h4>
+          <a href="mailto:info@zgc.com.pk" class="text-charcoal/70 hover:text-charcoal text-xs block transition-colors">
+            info@zgc.com.pk
+          </a>
+        </div>
+
+        <div class="space-y-2 border-l border-charcoal/10 pl-4">
+          <Clock className="w-5 h-5 text-charcoal/25 mb-1" />
+          <h4 class="font-semibold uppercase text-xs tracking-wider">Office Hours</h4>
+          <p class="text-charcoal/70 text-xs">9:00 AM &ndash; 10:30 PM</p>
+          <p class="text-charcoal/40 text-[10px]">Open: Monday to Saturday</p>
+        </div>
+      </div>
+
+      {/* Full-width Map container */}
+      <div class="h-[320px] border border-charcoal/10 rounded-sm overflow-hidden shadow-inner">
+        <iframe 
+          title="ZGC Malir Head Office Interactive Map"
+          src="https://maps.google.com/maps?q=Survey%20No.%20535/1,%20Deh%20Mehran%20Tapo%20Airport,%20Malir,%20Karachi&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
+    {/* Form column */}
+    <div class="lg:pt-6">
+      <ContactForm client:load />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { MapPin, Tag, Info, CalendarDays, Key, Home, ArrowLeft } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Generate WhatsApp Link
+const encodedMessage = encodeURIComponent(`Hello, I am interested in booking or learning more about ${entry.data.title}`);
+const whatsappLink = `https://api.whatsapp.com/send?phone=+923302382380&text=${encodedMessage}`;
+
+// Determine featured image
+let bannerImg = "/images/projects/sun-residency.jpg";
+if (entry.data.title === "City Executive Tower") {
+  bannerImg = "/images/projects/city-executive.jpg";
+} else if (entry.data.title === "City Towers & Shopping Mall") {
+  bannerImg = "/images/projects/city-towers.jpg";
+} else if (entry.data.title === "Afroz Mobile Mall and Residency") {
+  bannerImg = "/images/projects/afroz-residency.jpg";
+} else if (entry.data.title === "Zain Shopping Mall") {
+  bannerImg = "/images/projects/banner-2.jpg";
+} else if (entry.data.title === "City Centre Shopping Mall") {
+  bannerImg = "/images/projects/banner-4.jpg";
+} else if (entry.data.title === "The Corner Apartment") {
+  bannerImg = "/images/projects/banner-5.jpg";
+} else if (entry.data.title === "Capital Center") {
+  bannerImg = "/images/projects/banner-6.jpg";
+}
+
+// Maps of descriptive texts for project amenities to offer detailed highlights
+const amenityHighlights: Record<string, string> = {
+  "State-of-the-Art Gym": "Fully equipped fitness center for daily workouts and health training.",
+  "Fitness Center / Gym": "Fully equipped fitness center for daily workouts and health training.",
+  "Sauna & Spa": "Thermal sauna room for detoxification and complete relaxation.",
+  "Sauna Room": "Thermal sauna room for detoxification and complete relaxation.",
+  "Thermal Jacuzzi": "Relaxing hot tub area designed for soothing hydrotherapy.",
+  "High-Speed Elevator": "Modern high-speed elevator access to all floors.",
+  "High-Speed Elevators": "Modern high-speed elevator access to all floors.",
+  "Passenger Elevator": "Modern passenger elevator access to all floors.",
+  "Elevator Access": "Modern passenger elevator access to all floors.",
+  "Secure Parking Area": "Spacious and secure vehicle parking facility.",
+  "Parking Area": "Spacious and secure vehicle parking facility.",
+  "Dedicated Parking": "Spacious and secure vehicle parking facility.",
+  "Multi-level Safe Parking": "Large multi-level parking area accommodating vehicles safely.",
+  "Lobby Reception": "Welcoming front desk lobby for guests and business inquiries.",
+  "Kids Play Area": "Dedicated play zone for kids and recreational outdoor fun.",
+  "Kids Play Zone": "Dedicated play zone for kids and recreational outdoor fun.",
+  "Community Hall": "Large event hall for gatherings, meetings, and celebrations.",
+  "On-site Superstore": "Convenient on-site market for daily groceries and essentials.",
+  "Superstore": "Convenient on-site market for daily groceries and essentials.",
+  "Billiards Room": "Indoor gaming room featuring professional pool tables.",
+  "Senior Citizen Zone": "Quiet, comfortable seating space designed for senior relaxation."
+};
+---
+
+<BaseLayout 
+  title={`${entry.data.title} | Projects by Zain Group`} 
+  description={`${entry.data.description} Locate in ${entry.data.location}. Get price models, amenities details, and booking information for ${entry.data.title}.`}
+>
+  {/* Back button */}
+  <div class="max-w-7xl mx-auto px-6 pt-6">
+    <a href="/projects" class="inline-flex items-center space-x-2 text-xs font-bold tracking-widest uppercase text-charcoal/50 hover:text-accent-gold transition-colors">
+      <ArrowLeft className="w-4 h-4" />
+      <span>Back To Projects</span>
+    </a>
+  </div>
+
+  {/* Project Hero Banner */}
+  <!-- TODO: replace with client-provided photography -->
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <div class="relative h-[50vh] md:h-[60vh] bg-charcoal rounded-sm overflow-hidden shadow-2xl border border-charcoal/10">
+      <img src={bannerImg} alt={entry.data.title} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
+        <div class="space-y-3 max-w-4xl">
+          <span class="bg-accent-gold text-charcoal px-3 py-1 text-[9px] font-bold tracking-widest uppercase rounded-sm inline-block">
+            {entry.data.status}
+          </span>
+          <h1 class="text-4xl md:text-5xl font-light font-display text-linen">{entry.data.title}</h1>
+          <p class="text-sm md:text-base text-linen/80 font-light flex items-center space-x-1.5">
+            <MapPin className="w-4 h-4 text-accent-gold flex-shrink-0" />
+            <span>{entry.data.location}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Project Details Grid */}
+  <section class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+    
+    {/* Body content (markdown) */}
+    <div class="lg:col-span-2 space-y-8">
+      <div class="space-y-4">
+        <h2 class="text-2xl font-light font-display text-charcoal border-b border-charcoal/10 pb-2">Overview</h2>
+        <div class="prose prose-sm max-w-none text-charcoal/70 leading-relaxed font-light space-y-4">
+          <Content />
+        </div>
+      </div>
+
+      {/* Amenities Section */}
+      {entry.data.amenities && entry.data.amenities.length > 0 && (
+        <div class="space-y-6">
+          <h2 class="text-2xl font-light font-display text-charcoal border-b border-charcoal/10 pb-2">Key Amenities</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {entry.data.amenities.map(amenity => (
+              <div class="border border-charcoal/5 bg-linen/20 p-5 rounded-sm flex flex-col space-y-1">
+                <span class="text-sm font-semibold text-charcoal">{amenity}</span>
+                <span class="text-xs text-charcoal/50 font-light">
+                  {amenityHighlights[amenity] || "Designed to offer maximum convenience and elevate daily experiences."}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+
+    {/* Sidebar CTA panel */}
+    <div class="space-y-8">
+      <div class="bg-charcoal text-linen p-8 border border-accent-gold/20 rounded-sm shadow-xl space-y-6">
+        <h3 class="text-xl font-light font-display text-accent-gold border-b border-linen/10 pb-3">Booking Information</h3>
+        
+        <div class="space-y-4 text-xs font-light text-linen/70">
+          <div class="flex items-center justify-between py-1">
+            <span class="flex items-center space-x-1"><Tag className="w-4 h-4 text-accent-gold" /> <span>Pricing:</span></span>
+            <span class="font-semibold text-accent-gold text-sm">{entry.data.price}</span>
+          </div>
+          <div class="flex items-center justify-between py-1">
+            <span class="flex items-center space-x-1"><Info className="w-4 h-4 text-accent-gold" /> <span>Property Type:</span></span>
+            <span class="font-medium text-linen">{entry.data.type}</span>
+          </div>
+          <div class="flex items-center justify-between py-1">
+            <span class="flex items-center space-x-1"><CalendarDays className="w-4 h-4 text-accent-gold" /> <span>Development Status:</span></span>
+            <span class="font-medium text-linen">{entry.data.status}</span>
+          </div>
+          {entry.data.rooms && (
+            <div class="flex items-center justify-between py-1">
+              <span class="flex items-center space-x-1"><Home className="w-4 h-4 text-accent-gold" /> <span>Rooms available:</span></span>
+              <span class="font-medium text-linen">{entry.data.rooms}</span>
+            </div>
+          )}
+          {entry.data.area && (
+            <div class="flex items-center justify-between py-1">
+              <span class="flex items-center space-x-1"><Key className="w-4 h-4 text-accent-gold" /> <span>Area/Size:</span></span>
+              <span class="font-medium text-linen">{entry.data.area}</span>
+            </div>
+          )}
+        </div>
+
+        <div class="pt-4 space-y-4">
+          <a 
+            href={whatsappLink} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-full bg-accent-gold text-charcoal hover:bg-linen hover:text-charcoal py-3.5 text-center text-xs font-bold tracking-widest uppercase transition-all duration-300 rounded-sm block shadow-md shadow-accent-gold/10"
+          >
+            Connect on WhatsApp
+          </a>
+          <a 
+            href="/contact" 
+            class="w-full border border-linen/20 text-linen hover:bg-linen hover:text-charcoal py-3.5 text-center text-xs font-bold tracking-widest uppercase transition-all duration-300 rounded-sm block"
+          >
+            Request Call back
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* JSON-LD Structured Data */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": entry.data.title,
+    "description": entry.data.description,
+    "image": bannerImg,
+    "url": Astro.url.href,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PKR",
+      "price": entry.data.price,
+      "availability": entry.data.status === "Delivered" ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "Zain Group of Companies"
+    }
+  })} />
+</BaseLayout>

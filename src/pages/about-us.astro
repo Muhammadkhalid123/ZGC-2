@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ShieldAlert, Award, HeartHandshake, Eye, Compass, ShieldCheck, Key, Landmark, ArrowRight } from 'lucide-react';
+---
+
+<BaseLayout 
+  title="About Us | Zain Group of Companies" 
+  description="Discover Zain Group of Companies (ZGC), Karachi's premium property developers with 25+ years of SBCA-certified construction and 27+ delivered landmarks."
+>
+  {/* 1. Hero — Tandem-style massive statement */}
+  <section class="bg-linen min-h-[70vh] flex items-center justify-center px-6 pt-28 pb-20 border-b border-charcoal/10">
+    <div class="max-w-[1100px] mx-auto text-center space-y-8 select-none reveal-up">
+      <p class="text-[13px] font-sans font-medium text-charcoal/40 tracking-wide">Our Legacy</p>
+      <h1 class="text-[clamp(2.2rem,7vw,6rem)] font-display font-semibold leading-[1.05] text-charcoal tracking-tight">
+        Building common ground through <em class="font-display italic font-semibold" style="font-style: italic;">trust</em> and structural <em class="font-display italic font-semibold" style="font-style: italic;">safety</em>.
+      </h1>
+      <p class="text-sm md:text-base font-sans font-light text-charcoal/45 max-w-xl mx-auto leading-relaxed">
+        With over 25 years of construction expertise under one roof, ZGC is Karachi's symbol of architectural integrity, transparent documentation, and on-time delivery.
+      </p>
+    </div>
+  </section>
+
+  {/* 2. Capabilities — Tandem "All-In Ownership" style */}
+  <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start border-b border-charcoal/10 reveal-up">
+    <div class="space-y-6 lg:sticky lg:top-28">
+      <span class="text-[10px] font-sans font-bold tracking-widest uppercase text-charcoal/35 block">How We Work</span>
+      <h2 class="text-3xl md:text-4xl font-display font-semibold text-charcoal leading-tight">
+        All-In Ownership: development, construction, and handover under one roof.
+      </h2>
+      <p class="text-sm text-charcoal/55 leading-relaxed font-light">
+        We handle acquisitions, structural engineering, raw material procurement, and property handovers internally. We move faster, communicate better, and eliminate surprises.
+      </p>
+      <div class="aspect-video bg-charcoal rounded-md overflow-hidden shadow-xl relative">
+        <iframe
+          width="100%" height="100%"
+          src="https://www.youtube.com/embed/u48ZINiLHgs"
+          title="Zain Group of Companies Corporate Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          class="absolute inset-0"
+        ></iframe>
+      </div>
+      <p class="text-[9px] text-charcoal/30 uppercase tracking-widest text-center">
+        Corporate Showcase: Ahmad M. Hashem Mall Project
+      </p>
+    </div>
+
+    {/* Capability cards — clean hairline borders */}
+    <div class="space-y-0 border border-charcoal/10 rounded-sm overflow-hidden">
+      <div class="p-8 border-b border-charcoal/10 space-y-3">
+        <div class="flex items-center space-x-3">
+          <ShieldCheck className="w-6 h-6 text-charcoal/25" />
+          <h3 class="text-lg font-display font-semibold text-charcoal">Deliberate Growth</h3>
+        </div>
+        <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+          We focus on one to two premium developments at any given time. Success is about doing things right — bringing engineering precision and daily management clarity to every floor.
+        </p>
+      </div>
+
+      <div class="p-8 border-b border-charcoal/10 space-y-3">
+        <div class="flex items-center space-x-3">
+          <Key className="w-6 h-6 text-charcoal/25" />
+          <h3 class="text-lg font-display font-semibold text-charcoal">Radical Transparency</h3>
+        </div>
+        <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+          100% clean-title verified documentation, SBCA approval file registers, and zero hidden possession fees. What we promise is what we deliver.
+        </p>
+      </div>
+
+      <div class="p-8 border-b border-charcoal/10 space-y-3">
+        <div class="flex items-center space-x-3">
+          <Landmark className="w-6 h-6 text-charcoal/25" />
+          <h3 class="text-lg font-display font-semibold text-charcoal">Milestone-Aligned Payments</h3>
+        </div>
+        <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+          Installment programs aligned with actual construction stages. Track concrete pouring, brickwork, and interior completion before making payments.
+        </p>
+      </div>
+
+      <div class="p-8 space-y-3">
+        <div class="flex items-center space-x-3">
+          <Award className="w-6 h-6 text-charcoal/25" />
+          <h3 class="text-lg font-display font-semibold text-charcoal">Premium Materials</h3>
+        </div>
+        <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+          We use certified brand-name cement (Lucky, Maple Leaf) and structural steel rods (Amreli, Mughal) to ensure absolute lifetime stability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Timeline — Charcoal dots, clean editorial lines */}
+  <section class="py-24 md:py-32 border-b border-charcoal/10 reveal-up">
+    <div class="max-w-[800px] mx-auto px-6 space-y-16">
+      
+      <div class="text-center space-y-4">
+        <h2 class="text-[clamp(2rem,6vw,5rem)] font-sans font-black uppercase leading-none tracking-tight text-charcoal">
+          The Long Game
+        </h2>
+        <p class="text-lg font-display italic font-light text-charcoal/40 max-w-md mx-auto">
+          Decades of building landmarks, navigating markets, and earning trust.
+        </p>
+      </div>
+
+      {/* Timeline — charcoal dots */}
+      <div class="relative border-l border-charcoal/15 pl-8 ml-4 space-y-14">
+        
+        <div class="relative space-y-2">
+          <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-charcoal border-4 border-linen"></div>
+          <span class="text-xs font-sans font-bold text-charcoal/40 block">1998</span>
+          <h3 class="text-2xl font-display font-semibold text-charcoal">Founded in Karachi</h3>
+          <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+            Haji Ahmad establishes ZGC with a mission to build safe vertical environments, setting up the first head office to address growing demand for trusted housing.
+          </p>
+        </div>
+
+        <div class="relative space-y-2">
+          <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-charcoal border-4 border-linen"></div>
+          <span class="text-xs font-sans font-bold text-charcoal/40 block">2006</span>
+          <h3 class="text-2xl font-display font-semibold text-charcoal">Residential Expansion</h3>
+          <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+            ZGC delivers PECHS residential landmarks, pioneering the use of standard-tested steel bars and high-grade concrete in Karachi's vertical layouts.
+          </p>
+        </div>
+
+        <div class="relative space-y-2">
+          <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-charcoal border-4 border-linen"></div>
+          <span class="text-xs font-sans font-bold text-charcoal/40 block">2014</span>
+          <h3 class="text-2xl font-display font-semibold text-charcoal">Commercial Landmarks</h3>
+          <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+            Completes City Towers & Shopping Mall and Zain Shopping Mall on Malir-Airport Road, ensuring zero layout delays or title deviations despite material inflation.
+          </p>
+        </div>
+
+        <div class="relative space-y-2">
+          <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-charcoal border-4 border-linen"></div>
+          <span class="text-xs font-sans font-bold text-charcoal/40 block">2022</span>
+          <h3 class="text-2xl font-display font-semibold text-charcoal">Sun Residency</h3>
+          <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+            Launches Sun Residency in Garden East — secure gated family flats with milestone-aligned payments that protect client capital.
+          </p>
+        </div>
+
+        <div class="relative space-y-2">
+          <div class="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full bg-charcoal border-4 border-linen"></div>
+          <span class="text-xs font-sans font-bold text-charcoal/40 block">2026</span>
+          <h3 class="text-2xl font-display font-semibold text-charcoal">City Executive Tower</h3>
+          <p class="text-xs text-charcoal/50 leading-relaxed font-light">
+            Groundbreaking on the SBCA-approved City Executive Tower — contemporary luxury apartments on Karachi's corporate corridor.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* 4. Values — Grid, no colored backgrounds */}
+  <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32 space-y-16 reveal-up">
+    <div class="text-center space-y-4 max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-display font-semibold text-charcoal">Our Standards</h2>
+      <p class="text-sm text-charcoal/45 font-light">Every brick laid and every title signed is backed by principles that safeguard your family and business.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-charcoal/10 reveal-stagger">
+      <div class="p-8 border-b lg:border-b-0 lg:border-r border-charcoal/10 space-y-3 reveal-item">
+        <Award className="w-6 h-6 text-charcoal/25" />
+        <h3 class="text-base font-display font-semibold text-charcoal">Quality Assured</h3>
+        <p class="text-xs text-charcoal/45 leading-relaxed font-light">Certified brand-name cement and structural steel rods for lifetime stability.</p>
+      </div>
+      <div class="p-8 border-b lg:border-b-0 lg:border-r border-charcoal/10 space-y-3 reveal-item">
+        <HeartHandshake className="w-6 h-6 text-charcoal/25" />
+        <h3 class="text-base font-display font-semibold text-charcoal">Absolute Honesty</h3>
+        <p class="text-xs text-charcoal/45 leading-relaxed font-light">Transparent registries, zero hidden costs, and certified SBCA clearances.</p>
+      </div>
+      <div class="p-8 border-b lg:border-b-0 lg:border-r border-charcoal/10 space-y-3 reveal-item">
+        <Eye className="w-6 h-6 text-charcoal/25" />
+        <h3 class="text-base font-display font-semibold text-charcoal">Design Integrity</h3>
+        <p class="text-xs text-charcoal/45 leading-relaxed font-light">Optimized for natural sunlight, cross-ventilation, and modern structural privacy.</p>
+      </div>
+      <div class="p-8 space-y-3 reveal-item">
+        <ShieldAlert className="w-6 h-6 text-charcoal/25" />
+        <h3 class="text-base font-display font-semibold text-charcoal">SBCA Certified</h3>
+        <p class="text-xs text-charcoal/45 leading-relaxed font-light">Strict compliance with Sindh Building Control Authority regulations.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 5. CTA */}
+  <section class="border-t border-charcoal/10 py-24 text-center space-y-6 reveal-up">
+    <h2 class="text-3xl md:text-5xl font-display font-semibold text-charcoal">Partner with ZGC</h2>
+    <p class="text-sm text-charcoal/45 max-w-md mx-auto font-light leading-relaxed">
+      Exploring a secure family apartment or a commercial retail outlet in Karachi? Let's talk.
+    </p>
+    <div class="pt-4 flex items-center justify-center gap-4">
+      <a 
+        href="/contact" 
+        class="bg-brand-green text-white hover:bg-charcoal px-8 py-3.5 text-xs font-sans font-bold tracking-widest uppercase rounded-sm transition-all duration-300 shadow-md"
+      >
+        Get In Touch
+      </a>
+      <a 
+        href="/projects" 
+        class="border border-charcoal text-charcoal hover:bg-charcoal hover:text-white px-8 py-3.5 text-xs font-sans font-bold tracking-widest uppercase rounded-sm transition-all duration-300"
+      >
+        Explore Portfolio
+      </a>
+    </div>
+  </section>
+</BaseLayout>

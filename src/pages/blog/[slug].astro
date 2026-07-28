@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { ArrowLeft, Clock, CalendarDays } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Determine local image based on title
+let blogImg = "/images/projects/sun-residency.jpg";
+if (entry.data.title.toLowerCase().includes("handover") || entry.data.title.toLowerCase().includes("checklist")) {
+  blogImg = "/images/projects/sun-residency.jpg";
+} else if (entry.data.title.toLowerCase().includes("compare") || entry.data.title.toLowerCase().includes("projects")) {
+  blogImg = "/images/projects/city-towers.jpg";
+} else if (entry.data.title.toLowerCase().includes("luxury") || entry.data.title.toLowerCase().includes("affordable")) {
+  blogImg = "/images/projects/city-executive.jpg";
+} else if (entry.data.title.toLowerCase().includes("shop") || entry.data.title.toLowerCase().includes("office") || entry.data.title.toLowerCase().includes("retail")) {
+  blogImg = "/images/projects/afroz-residency.jpg";
+}
+---
+
+<BaseLayout 
+  title={`${entry.data.title} | Zain Group Insights`}
+  description={entry.data.excerpt}
+>
+  {/* Back to Blog */}
+  <div class="max-w-3xl mx-auto px-6 pt-8">
+    <a href="/blog" class="inline-flex items-center space-x-2 text-xs font-bold tracking-widest uppercase text-charcoal/50 hover:text-accent-gold transition-colors">
+      <ArrowLeft className="w-4 h-4" />
+      <span>Back To Articles</span>
+    </a>
+  </div>
+
+  {/* Article Header */}
+  <header class="max-w-3xl mx-auto px-6 pt-10 pb-8 space-y-6">
+    <div class="flex items-center space-x-4 text-xs font-bold text-accent-gold uppercase tracking-widest">
+      <span class="flex items-center space-x-1">
+        <CalendarDays className="w-3.5 h-3.5" />
+        <span>{entry.data.date}</span>
+      </span>
+      <span>&bull;</span>
+      <span class="flex items-center space-x-1 text-charcoal/40">
+        <Clock className="w-3.5 h-3.5" />
+        <span>5 Min Read</span>
+      </span>
+    </div>
+
+    <h1 class="text-3xl md:text-5xl font-light font-display text-charcoal leading-tight">
+      {entry.data.title}
+    </h1>
+
+    <p class="text-base text-charcoal/60 leading-relaxed font-light italic border-l-2 border-accent-gold/40 pl-4 py-1">
+      {entry.data.excerpt}
+    </p>
+  </header>
+
+  {/* Featured image placeholder */}
+  <!-- TODO: replace with client-provided photography -->
+  <section class="max-w-3xl mx-auto px-6 pb-12">
+    <div class="aspect-[16/9] bg-charcoal rounded-sm overflow-hidden border border-charcoal/10 shadow-lg">
+      <div 
+        class="w-full h-full bg-cover bg-center" 
+        style={`background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('${blogImg}');`}
+      ></div>
+    </div>
+  </section>
+
+  {/* Article Content */}
+  <article class="max-w-3xl mx-auto px-6 pb-24">
+    <div class="prose prose-base max-w-none text-charcoal/70 leading-relaxed font-light space-y-6
+      prose-headings:font-display prose-headings:font-light prose-headings:text-charcoal prose-headings:mt-8 prose-headings:mb-4
+      prose-h2:text-2xl prose-h2:border-b prose-h2:border-charcoal/10 prose-h2:pb-2
+      prose-h3:text-lg prose-h3:font-semibold
+      prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-2
+      prose-strong:font-semibold prose-strong:text-charcoal"
+    >
+      <Content />
+    </div>
+
+    {/* Shared CTA box inside article */}
+    <div class="mt-16 bg-charcoal text-linen p-8 border border-accent-gold/20 rounded-sm shadow-xl space-y-4">
+      <h3 class="text-xl font-light font-display text-accent-gold">Looking for Your Dream Apartment?</h3>
+      <p class="text-xs text-linen/70 leading-relaxed font-light">
+        Zain Group of Companies has been helping families and businesses acquire safe, high-yield properties in Karachi for over 25 years. Reach out to our desk today for booking plans.
+      </p>
+      <div class="pt-2 flex flex-wrap gap-4">
+        <a 
+          href="/contact" 
+          class="bg-accent-gold text-charcoal hover:bg-linen hover:text-charcoal px-6 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-sm"
+        >
+          Book a Consultation
+        </a>
+        <a 
+          href="https://api.whatsapp.com/send?phone=+923302382380&text=Hello" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="border border-linen/20 text-linen hover:bg-linen hover:text-charcoal px-6 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-sm"
+        >
+          Chat with Sales
+        </a>
+      </div>
+    </div>
+  </article>
+
+</BaseLayout>
